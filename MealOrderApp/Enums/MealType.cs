@@ -8,6 +8,7 @@ namespace MealOrderApp.Enums
     public enum MealType
     {
         Vegetarian,
+        GlutenFree,
         NutFree,
         FishFree,
     }
