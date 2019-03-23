@@ -33,7 +33,7 @@ namespace MealOrderApp
             services.AddDbContext<MealsDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MealsDBContext")));
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddSwaggerGen(c =>
-                c.SwaggerDoc("v1", new Info() { Title = "MealOrderApp", Version = "v1" }));
+                c.SwaggerDoc("v1", new Info() { Title = "Meal Order API", Version = "v1" }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +50,7 @@ namespace MealOrderApp
 
             app.UseHttpsRedirection();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("../swagger/v1/swagger.json", "Api for Meal Ordering"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Meal Order API"));
             app.UseMvc();
         }
     }

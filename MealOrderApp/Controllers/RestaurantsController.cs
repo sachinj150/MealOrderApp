@@ -12,56 +12,56 @@ namespace MealOrderApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsController : ControllerBase
+    public class RestaurantsController : ControllerBase
     {
         private readonly MealsDbContext _context;
 
-        public MealsController(MealsDbContext context)
+        public RestaurantsController(MealsDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Meals
+        // GET: api/Restaurants
         [HttpGet]
-        public IEnumerable<Meal> GetMeals()
+        public IEnumerable<Restaurant> GetRestaurants()
         {
-            return _context.Meals;
+            return _context.Restaurants;
         }
 
-        // GET: api/Meals/5
+        // GET: api/Restaurants/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMeal([FromRoute] int id)
+        public async Task<IActionResult> GetRestaurant([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meals.FindAsync(id);
+            var restaurant = await _context.Restaurants.FindAsync(id);
 
-            if (meal == null)
+            if (restaurant == null)
             {
                 return NotFound();
             }
 
-            return Ok(meal);
+            return Ok(restaurant);
         }
 
-        // PUT: api/Meals/5
+        // PUT: api/Restaurants/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeal([FromRoute] int id, [FromBody] Meal meal)
+        public async Task<IActionResult> PutRestaurant([FromRoute] int id, [FromBody] Restaurant restaurant)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != meal.MealId)
+            if (id != restaurant.RestaurantId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(meal).State = EntityState.Modified;
+            _context.Entry(restaurant).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +69,7 @@ namespace MealOrderApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MealExists(id))
+                if (!RestaurantExists(id))
                 {
                     return NotFound();
                 }
@@ -82,45 +82,45 @@ namespace MealOrderApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Meals
+        // POST: api/Restaurants
         [HttpPost]
-        public async Task<IActionResult> PostMeal([FromBody] Meal meal)
+        public async Task<IActionResult> PostRestaurant([FromBody] Restaurant restaurant)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Meals.Add(meal);
+            _context.Restaurants.Add(restaurant);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMeal", new { id = meal.MealId }, meal);
+            return CreatedAtAction("GetRestaurant", new { id = restaurant.RestaurantId }, restaurant);
         }
 
-        // DELETE: api/Meals/5
+        // DELETE: api/Restaurants/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeal([FromRoute] int id)
+        public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meals.FindAsync(id);
-            if (meal == null)
+            var restaurant = await _context.Restaurants.FindAsync(id);
+            if (restaurant == null)
             {
                 return NotFound();
             }
 
-            _context.Meals.Remove(meal);
+            _context.Restaurants.Remove(restaurant);
             await _context.SaveChangesAsync();
 
-            return Ok(meal);
+            return Ok(restaurant);
         }
 
-        private bool MealExists(int id)
+        private bool RestaurantExists(int id)
         {
-            return _context.Meals.Any(e => e.MealId == id);
+            return _context.Restaurants.Any(e => e.RestaurantId == id);
         }
     }
 }

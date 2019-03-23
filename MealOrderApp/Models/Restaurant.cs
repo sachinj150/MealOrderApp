@@ -12,7 +12,7 @@ namespace MealOrderApp.Models
         public int RestaurantId { get; set; }
         public string RestaurantName { get; set; }
         public decimal Rating { get; set; }
-        public List<MealType> MealTypes { get; set; }
+        public List<RestaurantMealType> AvailableMealTypes { get; set; }
         public int Capacity { get; set; }
 
     }

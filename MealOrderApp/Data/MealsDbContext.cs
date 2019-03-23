@@ -14,7 +14,8 @@ namespace MealOrderApp.Data
 
         }
 
-        public DbSet<MealType> MealTypes { get; set; }
+        public DbSet<RestaurantMealType> RestaurantMealTypes { get; set; }
+        public DbSet<OrderedMealType> OrderedMealTypes { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Meal> Meals { get; set; }
     }

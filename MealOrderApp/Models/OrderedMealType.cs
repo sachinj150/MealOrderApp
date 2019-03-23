@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MealOrderApp.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MealOrderApp.Models
 {
-    public class Meal
+    public class OrderedMealType
     {
         [Key]
-        public int MealId { get; set; }
+        public int OrderedMealTypeId { get; set; }
+        public MealType MealType { get; set; }
         public int NumberOfMeals { get; set; }
-        public List<OrderedMealType> SpecialityMeals { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MealOrderApp.Models;
+﻿using MealOrderApp.Enums;
+using MealOrderApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,17 @@ namespace MealOrderApp.Data
                 new Meal()
                 {
                     NumberOfMeals = 50,
-                    SpecialityMeals = new List<MealType>()
+                    SpecialityMeals = new List<OrderedMealType>()
                     {
-                        new MealType()
+                        new OrderedMealType()
                         {
-                            MealName = "FishFree"
+                            MealType = MealType.FishFree,
+                            NumberOfMeals = 10
                         },
-                        new MealType()
+                        new OrderedMealType()
                         {
-                            MealName = "NutFree"
+                            MealType = MealType.Vegetarian,
+                            NumberOfMeals = 20
                         }
                     }
                 }
@@ -40,12 +43,27 @@ namespace MealOrderApp.Data
                 {
                     RestaurantName = "Sunterra",
                     Rating = 4.8M,
-                    Capacity = 100,
-
+                    AvailableMealTypes = new List<RestaurantMealType>()
+                    {
+                        new RestaurantMealType()
+                        {
+                            MealType = MealType.FishFree,
+                            Capacity = 20
+                        },
+                        new RestaurantMealType()
+                        {
+                            MealType = MealType.Vegetarian,
+                            Capacity = 30
+                        }
+                    },
+                    Capacity = 100
                 }
             };
 
             context.Meals.AddRange(meals);
+            context.SaveChanges();
+
+            context.Restaurants.AddRange(restauants);
             context.SaveChanges();
         }
     }
