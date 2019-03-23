@@ -8,7 +8,7 @@ namespace MealOrderApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsController : ControllerBase
+    public class ValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
