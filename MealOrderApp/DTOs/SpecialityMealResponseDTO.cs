@@ -1,4 +1,4 @@
-﻿using MealOrderApp.Models;
+﻿using MealOrderApp.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MealOrderApp.DTOs
 {
-    public class MealDTO
+    public class SpecialityMealResponseDTO
     {
-        public int NumberOfMeals { get; set; }
-        public List<RestaurantMealType> SpecialityMeals { get; set; }
+        public MealType MealType { get; set; }
+        public int NumberOfMealsRequested { get; set; }
         public string RestaurantName { get; set; }
     }
 }
