@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MealOrderApp.Data;
 using MealOrderApp.Models;
 using Newtonsoft.Json;
+using MealOrderApp.Services;
 
 namespace MealOrderApp.Controllers
 {
@@ -15,30 +16,30 @@ namespace MealOrderApp.Controllers
     [ApiController]
     public class MealsController : ControllerBase
     {
-        private readonly MealsDbContext _context;
+        private readonly IMealsService _mealsService;
 
-        public MealsController(MealsDbContext context)
+        public MealsController(IMealsService mealsService)
         {
-            _context = context;
+            _mealsService = mealsService;
         }
 
         // GET: api/Meals
         [HttpGet]
         public IEnumerable<Meal> GetMeals()
         {
-            return _context.Meals.Include(i => i.OrderedMealTypes).ToList();
+            return _mealsService.GetMeals();
         }
 
         // GET: api/Meals/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMeal([FromRoute] int id)
+        public IActionResult GetMeal([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meals.Include(i => i.OrderedMealTypes).Where(t => t.MealId == id).ToListAsync();
+            var meal = _mealsService.GetMealById(id);
 
             if (meal == null)
             {
@@ -64,8 +65,7 @@ namespace MealOrderApp.Controllers
 
             try
             {
-                 _context.Meals.UpdateRange(meal);
-                _context.SaveChanges();
+                _mealsService.UpdateMeal(meal);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,43 +84,41 @@ namespace MealOrderApp.Controllers
 
         // POST: api/Meals
         [HttpPost]
-        public async Task<IActionResult> PostMeal([FromBody] Meal meal)
+        public IActionResult PostMeal([FromBody] Meal meal)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Meals.Add(meal);
-            await _context.SaveChangesAsync();
+            _mealsService.CreateMeal(meal);
 
             return CreatedAtAction("GetMeal", new { id = meal.MealId }, meal);
         }
 
         // DELETE: api/Meals/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeal([FromRoute] int id)
+        public IActionResult DeleteMeal([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meals.FindAsync(id);
+            var meal = _mealsService.GetMealByIdForDelete(id);
             if (meal == null)
             {
                 return NotFound();
             }
 
-            _context.Meals.RemoveRange(meal);
-            await _context.SaveChangesAsync();
+            _mealsService.DeleteMeal(meal);
 
             return Ok(meal);
         }
 
         private bool MealExists(int id)
         {
-            return _context.Meals.Any(e => e.MealId == id);
+            return _mealsService.FindMealExists(id);
         }
     }
 }

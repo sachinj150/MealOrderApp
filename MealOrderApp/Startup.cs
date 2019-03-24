@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MealOrderApp.Data;
+using MealOrderApp.Repositories;
 using MealOrderApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +36,10 @@ namespace MealOrderApp
                     options => options.SerializerSettings.ReferenceLoopHandling =
                     Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<MealsDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MealsDBContext")));
-            services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+            services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
+            services.AddScoped<IMealsRepository, MealsRepository>();
+            services.AddScoped<IRestaurantsService, RestaurantsService>();
+            services.AddScoped<IMealsService, MealsService>();
             services.AddSwaggerGen(c =>
                 c.SwaggerDoc("v1", new Info() { Title = "Meal Order API", Version = "v1" }));
         }

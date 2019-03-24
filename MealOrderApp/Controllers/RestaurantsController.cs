@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MealOrderApp.Data;
 using MealOrderApp.Models;
+using MealOrderApp.Services;
 
 namespace MealOrderApp.Controllers
 {
@@ -14,30 +15,30 @@ namespace MealOrderApp.Controllers
     [ApiController]
     public class RestaurantsController : ControllerBase
     {
-        private readonly MealsDbContext _context;
+        private readonly IRestaurantsService _restaurantsService;
 
-        public RestaurantsController(MealsDbContext context)
+        public RestaurantsController(IRestaurantsService restaurantsService)
         {
-            _context = context;
+            _restaurantsService = restaurantsService;
         }
 
         // GET: api/Restaurants
         [HttpGet]
         public IEnumerable<Restaurant> GetRestaurants()
         {
-            return _context.Restaurants.Include(i => i.RestaurantMealTypes).ToList();
+            return _restaurantsService.GetRestaurants();
         }
 
         // GET: api/Restaurants/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetRestaurant([FromRoute] int id)
+        public IActionResult GetRestaurant([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var restaurant = await _context.Restaurants.Include(i => i.RestaurantMealTypes).Where(t => t.RestaurantId == id).ToListAsync();
+            var restaurant = _restaurantsService.GetRestaurantById(id);
 
             if (restaurant == null)
             {
@@ -49,7 +50,7 @@ namespace MealOrderApp.Controllers
 
         // PUT: api/Restaurants/5
         [HttpPut("{id}")]
-        public IActionResult PutRestaurants([FromRoute] int id, [FromBody] Restaurant restaurant)
+        public IActionResult PutRestaurant([FromRoute] int id, [FromBody] Restaurant restaurant)
         {
             if (!ModelState.IsValid)
             {
@@ -63,8 +64,7 @@ namespace MealOrderApp.Controllers
 
             try
             {
-                _context.Restaurants.UpdateRange(restaurant);
-                _context.SaveChanges();
+                _restaurantsService.UpdateRestaurant(restaurant);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -83,43 +83,41 @@ namespace MealOrderApp.Controllers
 
         // POST: api/Restaurants
         [HttpPost]
-        public async Task<IActionResult> PostRestaurant([FromBody] Restaurant restaurant)
+        public IActionResult PostRestaurant([FromBody] Restaurant restaurant)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Restaurants.Add(restaurant);
-            await _context.SaveChangesAsync();
+            _restaurantsService.CreateRestaurant(restaurant);
 
             return CreatedAtAction("GetRestaurant", new { id = restaurant.RestaurantId }, restaurant);
         }
 
         // DELETE: api/Restaurants/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
+        public IActionResult DeleteRestaurant([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var restaurant = await _context.Restaurants.FindAsync(id);
+            var restaurant = _restaurantsService.GetRestaurantByIdForDelete(id);
             if (restaurant == null)
             {
                 return NotFound();
             }
 
-            _context.Restaurants.RemoveRange(restaurant);
-            await _context.SaveChangesAsync();
+            _restaurantsService.DeleteRestaurant(restaurant);
 
             return Ok(restaurant);
         }
 
         private bool RestaurantExists(int id)
         {
-            return _context.Restaurants.Any(e => e.RestaurantId == id);
+            return _restaurantsService.FindRestaurantExists(id);
         }
     }
 }

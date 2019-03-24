@@ -31,11 +31,12 @@ namespace MealOrderApp.Controllers
             }
 
             var restaurants = _context.Restaurants.Include(i => i.RestaurantMealTypes).ToList().OrderByDescending(o => o.Rating);
+            return Ok(restaurants);
 
-            foreach (var restaurant in restaurants)
-            {
-                if (restaurant.RestaurantMealTypes.)
-            }
+            //foreach (var restaurant in restaurants)
+            //{
+            //    if (restaurant.RestaurantMealTypes.)
+            //}
         }
     }
 }
