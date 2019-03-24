@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MealOrderApp.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,17 +43,17 @@ namespace MealOrderApp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     MealType = table.Column<int>(nullable: false),
                     NumberOfMeals = table.Column<int>(nullable: false),
-                    MealId = table.Column<int>(nullable: true)
+                    MealId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderedMealTypes", x => x.OrderedMealTypeId);
                     table.ForeignKey(
-                        name: "FK_OrderedMealTypes_Meals_MealId",
+                        name: "ForeignKey_OrderedMealType_Meal",
                         column: x => x.MealId,
                         principalTable: "Meals",
                         principalColumn: "MealId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,17 +64,17 @@ namespace MealOrderApp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     MealType = table.Column<int>(nullable: false),
                     Capacity = table.Column<int>(nullable: false),
-                    RestaurantId = table.Column<int>(nullable: true)
+                    RestaurantId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RestaurantMealTypes", x => x.RestaurantMealTypeId);
                     table.ForeignKey(
-                        name: "FK_RestaurantMealTypes_Restaurants_RestaurantId",
+                        name: "ForeignKey_RestaurantMealType_Restaurant",
                         column: x => x.RestaurantId,
                         principalTable: "Restaurants",
                         principalColumn: "RestaurantId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

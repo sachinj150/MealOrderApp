@@ -12,6 +12,7 @@ namespace MealOrderApp.Data
         public static void EnsureSeedDataForContext(this MealsDbContext context)
         {
             context.Meals.RemoveRange(context.Meals);
+            context.Restaurants.RemoveRange(context.Restaurants);
             context.SaveChanges();
 
             //seed data
@@ -20,7 +21,7 @@ namespace MealOrderApp.Data
                 new Meal()
                 {
                     NumberOfMeals = 50,
-                    SpecialityMeals = new List<OrderedMealType>()
+                    OrderedMealTypes = new List<OrderedMealType>()
                     {
                         new OrderedMealType()
                         {
@@ -43,7 +44,7 @@ namespace MealOrderApp.Data
                 {
                     RestaurantName = "Sunterra",
                     Rating = 4.8M,
-                    AvailableMealTypes = new List<RestaurantMealType>()
+                    RestaurantMealTypes = new List<RestaurantMealType>()
                     {
                         new RestaurantMealType()
                         {

@@ -29,7 +29,11 @@ namespace MealOrderApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddXmlSerializerFormatters();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(
+                    options => options.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<MealsDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MealsDBContext")));
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddSwaggerGen(c =>

@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace MealOrderAppTests
+namespace MealOrderAppUnitTests
 {
     public class UnitTest1
     {

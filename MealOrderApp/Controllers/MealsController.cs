@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MealOrderApp.Data;
 using MealOrderApp.Models;
+using Newtonsoft.Json;
 
 namespace MealOrderApp.Controllers
 {
@@ -25,7 +26,7 @@ namespace MealOrderApp.Controllers
         [HttpGet]
         public IEnumerable<Meal> GetMeals()
         {
-            return _context.Meals;
+            return _context.Meals.Include(i => i.OrderedMealTypes).ToList();
         }
 
         // GET: api/Meals/5
@@ -37,7 +38,7 @@ namespace MealOrderApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meals.FindAsync(id);
+            var meal = await _context.Meals.Include(i => i.OrderedMealTypes).Where(t => t.MealId == id).ToListAsync();
 
             if (meal == null)
             {
@@ -49,7 +50,7 @@ namespace MealOrderApp.Controllers
 
         // PUT: api/Meals/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeal([FromRoute] int id, [FromBody] Meal meal)
+        public IActionResult PutMeal([FromRoute] int id, [FromBody] Meal meal)
         {
             if (!ModelState.IsValid)
             {
@@ -61,11 +62,10 @@ namespace MealOrderApp.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(meal).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                 _context.Meals.UpdateRange(meal);
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -112,7 +112,7 @@ namespace MealOrderApp.Controllers
                 return NotFound();
             }
 
-            _context.Meals.Remove(meal);
+            _context.Meals.RemoveRange(meal);
             await _context.SaveChangesAsync();
 
             return Ok(meal);

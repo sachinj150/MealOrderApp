@@ -25,7 +25,7 @@ namespace MealOrderApp.Controllers
         [HttpGet]
         public IEnumerable<Restaurant> GetRestaurants()
         {
-            return _context.Restaurants;
+            return _context.Restaurants.Include(i => i.RestaurantMealTypes).ToList();
         }
 
         // GET: api/Restaurants/5
@@ -37,7 +37,7 @@ namespace MealOrderApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var restaurant = await _context.Restaurants.FindAsync(id);
+            var restaurant = await _context.Restaurants.Include(i => i.RestaurantMealTypes).Where(t => t.RestaurantId == id).ToListAsync();
 
             if (restaurant == null)
             {
@@ -49,7 +49,7 @@ namespace MealOrderApp.Controllers
 
         // PUT: api/Restaurants/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRestaurant([FromRoute] int id, [FromBody] Restaurant restaurant)
+        public IActionResult PutRestaurants([FromRoute] int id, [FromBody] Restaurant restaurant)
         {
             if (!ModelState.IsValid)
             {
@@ -61,11 +61,10 @@ namespace MealOrderApp.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(restaurant).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                _context.Restaurants.UpdateRange(restaurant);
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -112,7 +111,7 @@ namespace MealOrderApp.Controllers
                 return NotFound();
             }
 
-            _context.Restaurants.Remove(restaurant);
+            _context.Restaurants.RemoveRange(restaurant);
             await _context.SaveChangesAsync();
 
             return Ok(restaurant);

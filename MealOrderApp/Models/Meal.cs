@@ -8,9 +8,14 @@ namespace MealOrderApp.Models
 {
     public class Meal
     {
+        public Meal()
+        {
+            OrderedMealTypes = new HashSet<OrderedMealType>();
+        }
+
         [Key]
         public int MealId { get; set; }
         public int NumberOfMeals { get; set; }
-        public List<OrderedMealType> SpecialityMeals { get; set; }
+        public ICollection<OrderedMealType> OrderedMealTypes { get; set; }
     }
 }
