@@ -25,12 +25,12 @@ namespace MealOrderApp.Data
                     {
                         new OrderedMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             NumberOfMeals = 10
                         },
                         new OrderedMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             NumberOfMeals = 20
                         }
                     }
@@ -48,12 +48,12 @@ namespace MealOrderApp.Data
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 30
                         }
                     },

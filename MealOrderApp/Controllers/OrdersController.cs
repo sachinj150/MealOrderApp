@@ -24,15 +24,15 @@ namespace MealOrderApp.Controllers
         }
 
         // GET: api/Orders/5
-        [HttpGet("{id}")]
-        public IActionResult GetMeal([FromRoute] int id)
+        [HttpGet("{mealid}")]
+        public IActionResult GetMeal([FromRoute] int mealid)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var mealOrder = _ordersService.GetOrder(id);
+            var mealOrder = _ordersService.GetOrder(mealid);
             return Ok(mealOrder);
         }
     }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealOrderApp.Migrations
 {
     [DbContext(typeof(MealsDbContext))]
-    [Migration("20190324041236_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190325061346_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,7 @@ namespace MealOrderApp.Migrations
 
                     b.Property<int>("MealId");
 
-                    b.Property<int>("MealType");
+                    b.Property<string>("MealType");
 
                     b.Property<int>("NumberOfMeals");
 
@@ -77,7 +77,7 @@ namespace MealOrderApp.Migrations
 
                     b.Property<int>("Capacity");
 
-                    b.Property<int>("MealType");
+                    b.Property<string>("MealType");
 
                     b.Property<int>("RestaurantId");
 

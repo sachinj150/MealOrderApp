@@ -26,12 +26,12 @@ namespace MealOrderAppUnitTests
                     {
                         new OrderedMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             NumberOfMeals = 10
                         },
                         new OrderedMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             NumberOfMeals = 20
                         }
                     }
@@ -47,12 +47,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 30
                         }
                     },
@@ -79,12 +79,12 @@ namespace MealOrderAppUnitTests
                     {
                         new OrderedMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             NumberOfMeals = 10
                         },
                         new OrderedMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             NumberOfMeals = 20
                         }
                     }
@@ -100,12 +100,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = nameof(MealType.GlutenFree),
                             Capacity = 30
                         }
                     },
@@ -132,12 +132,12 @@ namespace MealOrderAppUnitTests
                     {
                         new OrderedMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             NumberOfMeals = 10
                         },
                         new OrderedMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = nameof(MealType.GlutenFree),
                             NumberOfMeals = 20
                         }
                     }
@@ -153,12 +153,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 30
                         }
                     },
@@ -172,12 +172,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = nameof(MealType.GlutenFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.NutFree,
+                            MealType = nameof(MealType.NutFree),
                             Capacity = 30
                         }
                     },
@@ -204,12 +204,12 @@ namespace MealOrderAppUnitTests
                     {
                         new OrderedMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             NumberOfMeals = 10
                         },
                         new OrderedMealType()
                         {
-                            MealType = MealType.NutFree,
+                            MealType = nameof(MealType.NutFree),
                             NumberOfMeals = 20
                         }
                     }
@@ -225,12 +225,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 30
                         }
                     },
@@ -244,12 +244,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = nameof(MealType.GlutenFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.NutFree,
+                            MealType = nameof(MealType.NutFree),
                             Capacity = 5
                         }
                     },
@@ -285,12 +285,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 20
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 30
                         }
                     },
@@ -326,12 +326,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 10
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 10
                         }
                     },
@@ -367,12 +367,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 5
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 5
                         }
                     },
@@ -386,12 +386,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = nameof(MealType.GlutenFree),
                             Capacity = 5
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.NutFree,
+                            MealType = nameof(MealType.NutFree),
                             Capacity = 5
                         }
                     },
@@ -427,12 +427,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.FishFree,
+                            MealType = nameof(MealType.FishFree),
                             Capacity = 5
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = nameof(MealType.Vegetarian),
                             Capacity = 5
                         }
                     },
@@ -446,12 +446,12 @@ namespace MealOrderAppUnitTests
                     {
                         new RestaurantMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = nameof(MealType.GlutenFree),
                             Capacity = 5
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.NutFree,
+                            MealType = nameof(MealType.NutFree),
                             Capacity = 5
                         }
                     },

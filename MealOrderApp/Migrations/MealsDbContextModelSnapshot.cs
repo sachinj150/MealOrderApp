@@ -39,7 +39,7 @@ namespace MealOrderApp.Migrations
 
                     b.Property<int>("MealId");
 
-                    b.Property<int>("MealType");
+                    b.Property<string>("MealType");
 
                     b.Property<int>("NumberOfMeals");
 
@@ -75,7 +75,7 @@ namespace MealOrderApp.Migrations
 
                     b.Property<int>("Capacity");
 
-                    b.Property<int>("MealType");
+                    b.Property<string>("MealType");
 
                     b.Property<int>("RestaurantId");
 

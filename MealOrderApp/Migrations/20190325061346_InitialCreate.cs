@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MealOrderApp.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,7 @@ namespace MealOrderApp.Migrations
                 {
                     OrderedMealTypeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    MealType = table.Column<int>(nullable: false),
+                    MealType = table.Column<string>(nullable: true),
                     NumberOfMeals = table.Column<int>(nullable: false),
                     MealId = table.Column<int>(nullable: false)
                 },
@@ -62,7 +62,7 @@ namespace MealOrderApp.Migrations
                 {
                     RestaurantMealTypeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    MealType = table.Column<int>(nullable: false),
+                    MealType = table.Column<string>(nullable: true),
                     Capacity = table.Column<int>(nullable: false),
                     RestaurantId = table.Column<int>(nullable: false)
                 },

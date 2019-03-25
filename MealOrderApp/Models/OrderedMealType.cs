@@ -12,7 +12,7 @@ namespace MealOrderApp.Models
     {
         [Key]
         public int OrderedMealTypeId { get; set; }
-        public MealType MealType { get; set; }
+        public string MealType { get; set; }
         public int NumberOfMeals { get; set; }
         [ForeignKey("Meal")]
         public int MealId { get; set; }
