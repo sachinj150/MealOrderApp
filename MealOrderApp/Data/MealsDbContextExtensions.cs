@@ -38,7 +38,7 @@ namespace MealOrderApp.Data
             };
 
             //seed data
-            var restauants = new List<Restaurant>()
+            var restaurants = new List<Restaurant>()
             {
                 new Restaurant()
                 {
@@ -53,7 +53,7 @@ namespace MealOrderApp.Data
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.GlutenFree,
+                            MealType = MealType.Vegetarian,
                             Capacity = 30
                         }
                     },
@@ -64,7 +64,7 @@ namespace MealOrderApp.Data
             context.Meals.AddRange(meals);
             context.SaveChanges();
 
-            context.Restaurants.AddRange(restauants);
+            context.Restaurants.AddRange(restaurants);
             context.SaveChanges();
         }
     }

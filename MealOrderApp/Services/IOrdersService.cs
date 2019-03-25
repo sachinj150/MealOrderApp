@@ -10,5 +10,6 @@ namespace MealOrderApp.Services
     public interface IOrdersService
     {
         MealResponseDTO GetOrder(int id);
+        MealResponseDTO ProcessMealOrder(Meal mealRequest, IEnumerable<Restaurant> restaurants);
     }
 }

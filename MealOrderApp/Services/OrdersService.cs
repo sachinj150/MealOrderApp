@@ -23,7 +23,13 @@ namespace MealOrderApp.Services
         public MealResponseDTO GetOrder(int id)
         {
             var mealRequest = _mealsRepository.GetMealById(id);
-            var restaurants = _restaurantsRepository.GetRestaurants().OrderByDescending(o => o.Rating);
+            var restaurants = _restaurantsRepository.GetRestaurants();
+            return ProcessMealOrder(mealRequest, restaurants);
+        }
+
+        public MealResponseDTO ProcessMealOrder(Meal mealRequest, IEnumerable<Restaurant> restaurants)
+        {
+            
             var mealCount = mealRequest.NumberOfMeals;
             var specialMealCount = 0;
 
@@ -36,7 +42,7 @@ namespace MealOrderApp.Services
 
             MealResponseDTO mealOrder = new MealResponseDTO();
 
-            foreach (var restaurant in restaurants)
+            foreach (var restaurant in restaurants.OrderByDescending(o => o.Rating))
             {
                 if (mealRequest.NumberOfMeals > 0)
                 {
@@ -48,7 +54,7 @@ namespace MealOrderApp.Services
 
                             if (specialityMeal.MealType == restaurantSpecialityMeal.MealType)
                             {
-                                if (specialityMeal.NumberOfMeals < restaurantSpecialityMeal.Capacity && specialityMeal.NumberOfMeals != 0)
+                                if (specialityMeal.NumberOfMeals <= restaurantSpecialityMeal.Capacity && specialityMeal.NumberOfMeals != 0)
                                 {
                                     specialityMealOrder.NumberOfMealsAvailable = specialityMeal.NumberOfMeals;
                                     specialityMealOrder.MealType = specialityMeal.MealType;
@@ -58,6 +64,7 @@ namespace MealOrderApp.Services
 
                                     mealOrder.TotalNumberOfMealsAvailable += specialityMeal.NumberOfMeals;
                                     mealRequest.NumberOfMeals -= specialityMeal.NumberOfMeals;
+                                    restaurant.Capacity -= specialityMeal.NumberOfMeals;
                                     specialityMeal.NumberOfMeals = 0;
                                 }
                                 else if (specialityMeal.NumberOfMeals > restaurantSpecialityMeal.Capacity && restaurantSpecialityMeal.Capacity != 0)
@@ -71,8 +78,9 @@ namespace MealOrderApp.Services
                                     mealOrder.TotalNumberOfMealsAvailable += restaurantSpecialityMeal.Capacity;
                                     mealRequest.NumberOfMeals -= restaurantSpecialityMeal.Capacity;
                                     specialityMeal.NumberOfMeals -= restaurantSpecialityMeal.Capacity;
+                                    restaurant.Capacity -= restaurantSpecialityMeal.Capacity;
+
                                 }
-                                restaurant.Capacity -= restaurantSpecialityMeal.Capacity;
                             }
                         }
                     }

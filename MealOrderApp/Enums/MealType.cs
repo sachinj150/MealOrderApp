@@ -9,7 +9,7 @@ namespace MealOrderApp.Enums
     {
         Vegetarian,
         FishFree,
-        EggFree,
+        NutFree,
         GlutenFree
     }
 }
