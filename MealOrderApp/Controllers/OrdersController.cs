@@ -24,6 +24,11 @@ namespace MealOrderApp.Controllers
         }
 
         // GET: api/Orders/5
+        /// <summary>
+        /// Get Order details for a meal requirement
+        /// </summary>
+        /// <param name="mealid"></param>
+        /// <returns></returns>
         [HttpGet("{mealid}")]
         public IActionResult GetMeal([FromRoute] int mealid)
         {

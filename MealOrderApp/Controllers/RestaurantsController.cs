@@ -23,6 +23,10 @@ namespace MealOrderApp.Controllers
         }
 
         // GET: api/Restaurants
+        /// <summary>
+        /// Get list of restaurants with meal availability
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Restaurant> GetRestaurants()
         {
@@ -30,6 +34,11 @@ namespace MealOrderApp.Controllers
         }
 
         // GET: api/Restaurants/5
+        /// <summary>
+        /// Get Restaurant based on a id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetRestaurant([FromRoute] int id)
         {
@@ -49,6 +58,12 @@ namespace MealOrderApp.Controllers
         }
 
         // PUT: api/Restaurants/5
+        /// <summary>
+        /// Update restaurant
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="restaurant"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult PutRestaurant([FromRoute] int id, [FromBody] Restaurant restaurant)
         {
@@ -82,6 +97,11 @@ namespace MealOrderApp.Controllers
         }
 
         // POST: api/Restaurants
+        /// <summary>
+        /// Add a new restaurant
+        /// </summary>
+        /// <param name="restaurant"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult PostRestaurant([FromBody] Restaurant restaurant)
         {
@@ -96,6 +116,11 @@ namespace MealOrderApp.Controllers
         }
 
         // DELETE: api/Restaurants/5
+        /// <summary>
+        /// Delete a restaurant
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult DeleteRestaurant([FromRoute] int id)
         {
@@ -115,6 +140,11 @@ namespace MealOrderApp.Controllers
             return Ok(restaurant);
         }
 
+        /// <summary>
+        /// Check if a restaurant exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool RestaurantExists(int id)
         {
             return _restaurantsService.FindRestaurantExists(id);

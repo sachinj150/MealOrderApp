@@ -24,6 +24,10 @@ namespace MealOrderApp.Controllers
         }
 
         // GET: api/Meals
+        /// <summary>
+        /// Get list of ordered meals
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Meal> GetMeals()
         {
@@ -31,6 +35,11 @@ namespace MealOrderApp.Controllers
         }
 
         // GET: api/Meals/5
+        /// <summary>
+        /// Get ordered meal by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetMeal([FromRoute] int id)
         {
@@ -50,6 +59,12 @@ namespace MealOrderApp.Controllers
         }
 
         // PUT: api/Meals/5
+        /// <summary>
+        /// Update ordered meal
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="meal"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult PutMeal([FromRoute] int id, [FromBody] Meal meal)
         {
@@ -83,6 +98,11 @@ namespace MealOrderApp.Controllers
         }
 
         // POST: api/Meals
+        /// <summary>
+        /// Insert new meal
+        /// </summary>
+        /// <param name="meal"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult PostMeal([FromBody] Meal meal)
         {
@@ -97,6 +117,11 @@ namespace MealOrderApp.Controllers
         }
 
         // DELETE: api/Meals/5
+        /// <summary>
+        /// Delete meal
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult DeleteMeal([FromRoute] int id)
         {
@@ -116,6 +141,11 @@ namespace MealOrderApp.Controllers
             return Ok(meal);
         }
 
+        /// <summary>
+        /// Check if meal exists based on the meal id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool MealExists(int id)
         {
             return _mealsService.FindMealExists(id);
