@@ -9,7 +9,7 @@ namespace MealOrderApp.DTOs
     public class SpecialityMealResponseDTO
     {
         public MealType MealType { get; set; }
-        public int NumberOfMealsRequested { get; set; }
+        public int NumberOfMealsAvailable { get; set; }
         public string RestaurantName { get; set; }
     }
 }

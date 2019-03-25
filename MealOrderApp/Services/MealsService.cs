@@ -21,7 +21,7 @@ namespace MealOrderApp.Services
             return _mealsRepository.GetMeals();
         }
 
-        public IEnumerable<Meal> GetMealById(int id)
+        public Meal GetMealById(int id)
         {
             return _mealsRepository.GetMealById(id);
         }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MealOrderApp.Data;
 using MealOrderApp.DTOs;
+using MealOrderApp.Models;
+using MealOrderApp.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,29 +16,24 @@ namespace MealOrderApp.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly MealsDbContext _context;
+        private readonly IOrdersService _ordersService;
 
-        public OrdersController(MealsDbContext context)
+        public OrdersController(IOrdersService ordersService)
         {
-            _context = context;
+            _ordersService = ordersService;
         }
 
-        // GET: api/Orders
-        [HttpPost]
-        public IActionResult GetMeal([FromBody] MealRequestDTO mealRequests)
+        // GET: api/Orders/5
+        [HttpGet("{id}")]
+        public IActionResult GetMeal([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var restaurants = _context.Restaurants.Include(i => i.RestaurantMealTypes).ToList().OrderByDescending(o => o.Rating);
-            return Ok(restaurants);
-
-            //foreach (var restaurant in restaurants)
-            //{
-            //    if (restaurant.RestaurantMealTypes.)
-            //}
+            var mealOrder = _ordersService.GetOrder(id);
+            return Ok(mealOrder);
         }
     }
 }

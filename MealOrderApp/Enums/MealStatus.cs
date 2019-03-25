@@ -8,6 +8,6 @@ namespace MealOrderApp.Enums
     public enum MealStatus
     {
         Confirmed,
-        Unavailable
+        InsufficientFood
     }
 }

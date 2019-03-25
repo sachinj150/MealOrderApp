@@ -9,7 +9,7 @@ namespace MealOrderApp.Repositories
     public interface IMealsRepository
     {
         IEnumerable<Meal> GetMeals();
-        IEnumerable<Meal> GetMealById(int id);
+        Meal GetMealById(int id);
         void UpdateMeal(Meal meal);
         void CreateMeal(Meal meal);
         Meal GetMealByIdForDelete(int id);

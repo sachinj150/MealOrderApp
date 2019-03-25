@@ -22,9 +22,9 @@ namespace MealOrderApp.Repositories
             return _context.Meals.Include(i => i.OrderedMealTypes).ToList();
         }
 
-        public IEnumerable<Meal> GetMealById(int id)
+        public Meal GetMealById(int id)
         {
-            return _context.Meals.Include(i => i.OrderedMealTypes).Where(t => t.MealId == id);
+            return _context.Meals.Include(i => i.OrderedMealTypes).Where(t => t.MealId == id).FirstOrDefault();
         }
 
         public void UpdateMeal(Meal meal)

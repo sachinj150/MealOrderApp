@@ -9,7 +9,7 @@ namespace MealOrderApp.Services
     public interface IMealsService
     {
         IEnumerable<Meal> GetMeals();
-        IEnumerable<Meal> GetMealById(int id);
+        Meal GetMealById(int id);
         void UpdateMeal(Meal meal);
         void CreateMeal(Meal meal);
         Meal GetMealByIdForDelete(int id);

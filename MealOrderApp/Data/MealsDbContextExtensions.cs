@@ -53,7 +53,7 @@ namespace MealOrderApp.Data
                         },
                         new RestaurantMealType()
                         {
-                            MealType = MealType.Vegetarian,
+                            MealType = MealType.GlutenFree,
                             Capacity = 30
                         }
                     },

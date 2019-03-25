@@ -40,6 +40,7 @@ namespace MealOrderApp
             services.AddScoped<IMealsRepository, MealsRepository>();
             services.AddScoped<IRestaurantsService, RestaurantsService>();
             services.AddScoped<IMealsService, MealsService>();
+            services.AddScoped<IOrdersService, OrdersService>();
             services.AddSwaggerGen(c =>
                 c.SwaggerDoc("v1", new Info() { Title = "Meal Order API", Version = "v1" }));
         }

@@ -9,9 +9,14 @@ namespace MealOrderApp.DTOs
 {
     public class MealResponseDTO
     {
+        public MealResponseDTO()
+        {
+            SpecialityMealsAvailable = new List<SpecialityMealResponseDTO>();
+            RegularMeals = new Dictionary<string, int>();
+        }
         public int TotalNumberOfMealsAvailable { get; set; }
-        public MealStatus Status { get; set; }
-        public List<String> RestaurantNames { get; set; }
+        public string Status { get; set; }
+        public Dictionary<string, int> RegularMeals { get; set; }
         public List<SpecialityMealResponseDTO> SpecialityMealsAvailable { get; set; }
     }
 }
